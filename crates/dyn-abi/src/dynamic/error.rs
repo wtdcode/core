@@ -2,7 +2,7 @@ use crate::{DynSolType, DynSolValue, Error, Result};
 use alloc::vec::Vec;
 use alloy_primitives::Selector;
 use alloy_sol_types::SolError;
-#[cfg(feature = "serde")]
+#[cfg(feature = "eip712")]
 use serde::{Deserialize, Serialize};
 
 /// See [alloy_sol_types::Panic] for signature details.
@@ -15,7 +15,7 @@ const REVERT_SELECTOR: Selector = Selector::new(alloy_sol_types::Revert::SELECTO
 /// This is a representation of a Solidity error, which can be used to decode
 /// error events.
 #[derive(Debug, Clone, PartialEq)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "eip712", derive(Serialize, Deserialize))]
 pub struct DynSolError {
     /// Error selector.
     pub(crate) selector: Selector,
